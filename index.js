@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 
-mongoose.connect('mongodb+srv://Namita:Atiman0002@clustertodo.dkdaubg.mongodb.net/todoDB');
+mongoose.connect('mongodb+srv://Namita:<password>@clustertodo.dkdaubg.mongodb.net/todoDB');
 
 
 const ItemsSchema = {
