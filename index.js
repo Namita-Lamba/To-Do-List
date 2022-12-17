@@ -7,6 +7,17 @@ const https = require('https');
 const app = express();
 
 
+const port = process.env.PORT || 5000;
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
 
 
 app.set('view engine', 'ejs');    // whenever u work with ejs
@@ -74,9 +85,12 @@ app.post("/delete", function(req, res){
 })
 
 
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+})
 
-
-const port = process.env.PORT || 5000;
 app.listen( port, function(){
   console.log("Server is running at port 5000")
 })
